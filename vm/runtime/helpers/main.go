@@ -147,7 +147,7 @@ import (
 	"time"
 	"math/big"
 
-	"github.com/expr-lang/expr/types"
+	"github.com/expr-lang/expr/types/extends"
 )
 
 func Equal(a, b interface{}) bool {
@@ -174,9 +174,9 @@ func Equal(a, b interface{}) bool {
 		case bool:
 			return x == y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == 0
 		}
 	}
@@ -204,9 +204,9 @@ func Less(a, b interface{}) bool {
 		case time.Duration:
 			return x < y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == -1
 		}
 	}
@@ -231,9 +231,9 @@ func More(a, b interface{}) bool {
 		case time.Duration:
 			return x > y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == 1
 		}
 	}
@@ -258,9 +258,9 @@ func LessOrEqual(a, b interface{}) bool {
 		case time.Duration:
 			return x <= y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) <= 0
 		}
 	}
@@ -285,9 +285,9 @@ func MoreOrEqual(a, b interface{}) bool {
 		case time.Duration:
 			return x >= y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) >= 0
 		}
 	}
@@ -314,12 +314,12 @@ func Add(a, b interface{}) interface{} {
 		case time.Duration:
 			return x + y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			bigInt := new(big.Int)
 			res := bigInt.Add(&x.Int, &y.Int)
-			return types.NiceBigInt{Int: *res}
+			return extends.NiceBigInt{Int: *res}
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T + %T", a, b))
@@ -340,12 +340,12 @@ func Subtract(a, b interface{}) interface{} {
 		case time.Duration:
 			return x - y
 		}
-	case types.NiceBigInt:
+	case extends.NiceBigInt:
 		switch y := b.(type) {
-		case types.NiceBigInt:
+		case extends.NiceBigInt:
 			bigInt := new(big.Int)
 			res := bigInt.Sub(&x.Int, &y.Int)
-			return types.NiceBigInt{Int: *res}
+			return extends.NiceBigInt{Int: *res}
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T - %T", a, b))
