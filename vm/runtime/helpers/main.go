@@ -145,6 +145,9 @@ import (
 	"fmt"
 	"reflect"
 	"time"
+	"math/big"
+
+	"github.com/expr-lang/expr/types"
 )
 
 func Equal(a, b interface{}) bool {
@@ -171,6 +174,11 @@ func Equal(a, b interface{}) bool {
 		case bool:
 			return x == y
 		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			return x.Cmp(&y.Int) == 0
+		}
 	}
 	if IsNil(a) && IsNil(b) {
 		return true
@@ -196,6 +204,11 @@ func Less(a, b interface{}) bool {
 		case time.Duration:
 			return x < y
 		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			return x.Cmp(&y.Int) == -1
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T < %T", a, b))
 }
@@ -217,6 +230,11 @@ func More(a, b interface{}) bool {
 		switch y := b.(type) {
 		case time.Duration:
 			return x > y
+		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			return x.Cmp(&y.Int) == 1
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T > %T", a, b))
@@ -240,6 +258,11 @@ func LessOrEqual(a, b interface{}) bool {
 		case time.Duration:
 			return x <= y
 		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			return x.Cmp(&y.Int) <= 0
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T <= %T", a, b))
 }
@@ -261,6 +284,11 @@ func MoreOrEqual(a, b interface{}) bool {
 		switch y := b.(type) {
 		case time.Duration:
 			return x >= y
+		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			return x.Cmp(&y.Int) >= 0
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T >= %T", a, b))
@@ -286,6 +314,13 @@ func Add(a, b interface{}) interface{} {
 		case time.Duration:
 			return x + y
 		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, &y.Int)
+			return types.NiceBigInt{Int: *res}
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T + %T", a, b))
 }
@@ -304,6 +339,13 @@ func Subtract(a, b interface{}) interface{} {
 		switch y := b.(type) {
 		case time.Duration:
 			return x - y
+		}
+	case types.NiceBigInt:
+		switch y := b.(type) {
+		case types.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, &y.Int)
+			return types.NiceBigInt{Int: *res}
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T - %T", a, b))
