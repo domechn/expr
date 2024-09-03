@@ -5,6 +5,7 @@ import (
 	"time"
 
 	. "github.com/expr-lang/expr/checker/nature"
+	"github.com/expr-lang/expr/types/extends"
 )
 
 var (
@@ -98,8 +99,12 @@ func isFloat(nt Nature) bool {
 	return false
 }
 
+func isBigInt(nt Nature) bool {
+	return nt.Type == reflect.TypeOf(extends.NiceBigInt{})
+}
+
 func isNumber(nt Nature) bool {
-	return isInteger(nt) || isFloat(nt)
+	return isInteger(nt) || isFloat(nt) || isBigInt(nt)
 }
 
 func isTime(nt Nature) bool {

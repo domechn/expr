@@ -3189,6 +3189,13 @@ func Multiply(a, b interface{}) interface{} {
 		case time.Duration:
 			return time.Duration(x) * time.Duration(y)
 		}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, &y.Int)
+			return extends.NiceBigInt{Int: *res}
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T * %T", a, b))
 }
@@ -3519,6 +3526,13 @@ func Divide(a, b interface{}) float64 {
 		case float64:
 			return float64(x) / float64(y)
 		}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Div(&x.Int, &y.Int)
+			return float64(res.Int64())
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T / %T", a, b))
 }
@@ -3754,6 +3768,13 @@ func Modulo(a, b interface{}) int {
 			return int(x) % int(y)
 		case int64:
 			return int(x) % int(y)
+		}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, &y.Int)
+			return int(res.Int64())
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T %% %T", a, b))

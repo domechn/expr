@@ -354,6 +354,13 @@ func Subtract(a, b interface{}) interface{} {
 func Multiply(a, b interface{}) interface{} {
 	switch x := a.(type) {
 	{{ cases_with_duration "*" }}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, &y.Int)
+			return extends.NiceBigInt{Int: *res}
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T * %T", a, b))
 }
@@ -361,6 +368,13 @@ func Multiply(a, b interface{}) interface{} {
 func Divide(a, b interface{}) float64 {
 	switch x := a.(type) {
 	{{ cases "/" }}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Div(&x.Int, &y.Int)
+			return float64(res.Int64())
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T / %T", a, b))
 }
@@ -368,6 +382,13 @@ func Divide(a, b interface{}) float64 {
 func Modulo(a, b interface{}) int {
 	switch x := a.(type) {
 	{{ cases_int_only "%" }}
+	case extends.NiceBigInt:
+		switch y := b.(type) {
+		case extends.NiceBigInt:
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, &y.Int)
+			return int(res.Int64())
+		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T %% %T", a, b))
 }
