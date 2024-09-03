@@ -3,6 +3,7 @@ package parser
 import (
 	"fmt"
 	"math"
+	"math/big"
 	"strconv"
 	"strings"
 
@@ -13,6 +14,7 @@ import (
 	. "github.com/expr-lang/expr/parser/lexer"
 	"github.com/expr-lang/expr/parser/operator"
 	"github.com/expr-lang/expr/parser/utils"
+	"github.com/expr-lang/expr/types/extends"
 )
 
 type arg byte
@@ -375,9 +377,16 @@ func (p *parser) parseSecondary() Node {
 		default:
 			number, err := strconv.ParseInt(value, 10, 64)
 			if err != nil {
-				p.error("invalid integer literal: %v", err)
+				// parse to NiceBigInt
+				bigInt := new(big.Int)
+				bi, ok := bigInt.SetString(value, 10)
+				if !ok {
+					p.error("invalid integer literal: %v", err)
+				}
+				node = p.toBigIntNode(*bi)
+			} else {
+				node = p.toIntegerNode(number)
 			}
-			node = p.toIntegerNode(number)
 		}
 		if node != nil {
 			node.SetLocation(token.Location)
@@ -407,6 +416,10 @@ func (p *parser) toIntegerNode(number int64) Node {
 		return nil
 	}
 	return &IntegerNode{Value: int(number)}
+}
+
+func (p *parser) toBigIntNode(number big.Int) Node {
+	return &ConstantNode{Value: extends.NiceBigInt{Int: number}}
 }
 
 func (p *parser) toFloatNode(number float64) Node {
