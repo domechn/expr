@@ -699,6 +699,36 @@ func Equal(a, b interface{}) bool {
 		switch y := b.(type) {
 		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == 0
+		case uint:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case uint8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case uint16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case uint32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case uint64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case int:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case int8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case int16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case int32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
+		case int64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 0
 		}
 	}
 	if IsNil(a) && IsNil(b) {
@@ -1052,6 +1082,36 @@ func Less(a, b interface{}) bool {
 		switch y := b.(type) {
 		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == -1
+		case uint:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case uint8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case uint16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case uint32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case uint64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case int:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case int8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case int16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case int32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
+		case int64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == -1
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T < %T", a, b))
@@ -1402,6 +1462,36 @@ func More(a, b interface{}) bool {
 		switch y := b.(type) {
 		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) == 1
+		case uint:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case uint8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case uint16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case uint32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case uint64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case int:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case int8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case int16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case int32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
+		case int64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) == 1
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T > %T", a, b))
@@ -1752,6 +1842,36 @@ func LessOrEqual(a, b interface{}) bool {
 		switch y := b.(type) {
 		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) <= 0
+		case uint:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case uint8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case uint16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case uint32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case uint64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case int:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case int8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case int16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case int32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
+		case int64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) <= 0
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T <= %T", a, b))
@@ -2102,6 +2222,36 @@ func MoreOrEqual(a, b interface{}) bool {
 		switch y := b.(type) {
 		case extends.NiceBigInt:
 			return x.Cmp(&y.Int) >= 0
+		case uint:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case uint8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case uint16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case uint32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case uint64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case int:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case int8:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case int16:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case int32:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
+		case int64:
+			by := big.NewInt(int64(y))
+			return x.Cmp(by) >= 0
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T >= %T", a, b))
@@ -2456,6 +2606,56 @@ func Add(a, b interface{}) interface{} {
 			bigInt := new(big.Int)
 			res := bigInt.Add(&x.Int, &y.Int)
 			return extends.NiceBigInt{Int: *res}
+		case uint:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Add(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T + %T", a, b))
@@ -2804,6 +3004,56 @@ func Subtract(a, b interface{}) interface{} {
 		case extends.NiceBigInt:
 			bigInt := new(big.Int)
 			res := bigInt.Sub(&x.Int, &y.Int)
+			return extends.NiceBigInt{Int: *res}
+		case uint:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Sub(&x.Int, by)
 			return extends.NiceBigInt{Int: *res}
 		}
 	}
@@ -3195,6 +3445,56 @@ func Multiply(a, b interface{}) interface{} {
 			bigInt := new(big.Int)
 			res := bigInt.Mul(&x.Int, &y.Int)
 			return extends.NiceBigInt{Int: *res}
+		case uint:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case uint64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
+		case int64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return extends.NiceBigInt{Int: *res}
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T * %T", a, b))
@@ -3532,6 +3832,56 @@ func Divide(a, b interface{}) float64 {
 			bigInt := new(big.Int)
 			res := bigInt.Div(&x.Int, &y.Int)
 			return float64(res.Int64())
+		case uint:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case uint8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case uint16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case uint32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case uint64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case int:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case int8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case int16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case int32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
+		case int64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mul(&x.Int, by)
+			return float64(res.Int64())
 		}
 	}
 	panic(fmt.Sprintf("invalid operation: %T / %T", a, b))
@@ -3774,6 +4124,56 @@ func Modulo(a, b interface{}) int {
 		case extends.NiceBigInt:
 			bigInt := new(big.Int)
 			res := bigInt.Mod(&x.Int, &y.Int)
+			return int(res.Int64())
+		case uint:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case uint8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case uint16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case uint32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case uint64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case int:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case int8:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case int16:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case int32:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
+			return int(res.Int64())
+		case int64:
+			by := big.NewInt(int64(y))
+			bigInt := new(big.Int)
+			res := bigInt.Mod(&x.Int, by)
 			return int(res.Int64())
 		}
 	}
